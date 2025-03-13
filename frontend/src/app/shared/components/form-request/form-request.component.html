@@ -1,0 +1,45 @@
+<div class="popup">
+  <div class="popup-request">
+    <span class="popup-request-close" (click)="hidePopup()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1.93562" y1="2.6499" x2="13.9564" y2="14.6707" stroke="#BEBEBE" stroke-linecap="round"/>
+      <line x1="13.9236" y1="2.62971" x2="1.90277" y2="14.6505" stroke="#BEBEBE" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <div class="popup-request-form">
+      <h2 class="popup-request-form-title" *ngIf="isContent === ContentFormRequestType.full">Заявка на услугу</h2>
+      <h2 class="popup-request-form-title" *ngIf="isContent === ContentFormRequestType.abbreviated">Закажите бесплатную
+        консультацию!</h2>
+      <h2 class="popup-request-form-title" *ngIf="isContent === ContentFormRequestType.completed">Спасибо за вашу заявку!</h2>
+      <div class="popup-request-form-text-complete" *ngIf="isContent === ContentFormRequestType.completed">
+        Мы свяжемся с вами при первой же возможности.
+      </div>
+      <form [formGroup]="requestForm" class="popup-request-form-items" *ngIf="isContent === (ContentFormRequestType.abbreviated || ContentFormRequestType.full)">
+        <select formControlName="service" class="input" *ngIf="!(isContent === (ContentFormRequestType.abbreviated || ContentFormRequestType.completed))">
+          <option value="website-creation">Создание сайтов</option>
+          <option value="promotion">Продвижение</option>
+          <option value="advertising">Реклама</option>
+          <option value="copywriting">Копирайтинг</option>
+        </select>
+
+        <input formControlName="name" id="name" type="text" class="input" placeholder="Ваше имя"
+               [ngStyle]="{'border-color': requestForm.get('name')?.invalid
+                   && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : ''}">
+        <label class="error" for="name" *ngIf="requestForm.get('name')?.invalid
+                   && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched)">Заполните поле "Ваше имя"</label>
+
+        <input formControlName="phone" id="phone" type="text" class="input" placeholder="Ваш номер телефона"
+               [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
+                   && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : ''}">
+        <label class="error" for="phone" *ngIf="requestForm.get('phone')?.invalid
+                   && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched)">Заполните поле "Ваш номер телефона"</label>
+
+        <div class="error-response" *ngIf="errorResponseMessage">{{errorResponseMessage}}</div>
+
+        <button class="button" *ngIf="!(isContent === ContentFormRequestType.abbreviated)">Оставить заявку</button>
+        <button class="button" *ngIf="isContent === ContentFormRequestType.abbreviated" (click)="orderConsultation()">Заказать консультацию</button>
+      </form>
+      <button class="button button-ok" *ngIf="isContent === ContentFormRequestType.completed" (click)="hidePopup()">Окей</button>
+    </div>
+  </div>
+</div>

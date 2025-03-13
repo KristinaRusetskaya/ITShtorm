@@ -1,0 +1,72 @@
+@import "../../../../assets/styles/variables";
+
+.popup {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  .popup-request {
+    top: calc(50% - 244px);
+    left: calc(50% - 363px);
+    position: absolute;
+    width: 727px;
+    height: 489px;
+    padding: 0 142px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .popup-request-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+    }
+
+    .popup-request-form {
+      text-align: center;
+
+      .popup-request-form-title {
+        font-family: "Lora", sans-serif;
+        font-weight: 400;
+        font-size: 38px;
+        color: $light-blue-color;
+        margin-bottom: 20px;
+      }
+
+      .popup-request-form-text-complete {
+        font-weight: 500;
+        font-size: 14px;
+        text-align: center;
+        color: #1E1A2B;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+
+      .popup-request-form-items {
+        max-width: 422px;
+        display: flex;
+        flex-direction: column;
+
+        .button {
+          margin-top: 15px;
+          width: 422px;
+
+          &.button-ok {
+            width: 73px;
+            padding: 10px 20px;
+          }
+        }
+      }
+
+    }
+  }
+
+}

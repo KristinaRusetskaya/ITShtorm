@@ -1,0 +1,35 @@
+<section class="signup">
+  <div class="container">
+    <form [formGroup]="signupForm" class="signup-form">
+      <h2 class="signup-form-title">Регистрация на сайте</h2>
+      <input formControlName="name" id="name" type="text" class="input" placeholder="Ваше имя"
+             [ngStyle]="{'border-color': signupForm.get('name')?.invalid
+                   && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched) ? 'red' : ''}">
+      <label class="error" for="name" *ngIf="signupForm.get('name')?.invalid
+                   && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">Заполните поле "Ваше имя". Поле может содержать русские буквы и пробелы. Каждое новое слово - с большой буквы!</label>
+
+      <input formControlName="email" id="email" type="text" class="input" placeholder="Электронная почта"
+             [ngStyle]="{'border-color': signupForm.get('email')?.invalid
+                   && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched) ? 'red' : ''}">
+      <label class="error" for="email" *ngIf="signupForm.get('email')?.invalid
+                   && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">Заполните поле "Электронная почта" и убедитесь, что она корректна!</label>
+
+      <input formControlName="password" id="password" type="password" class="input" placeholder="Пароль"
+             [ngStyle]="{'border-color': signupForm.get('password')?.invalid
+                   && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched) ? 'red' : ''}">
+      <label class="error" for="password" *ngIf="signupForm.get('password')?.invalid
+                   && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">Заполните поле "Пароль". Пароль должен быть не менее 8 символов, содержать английские буквы, как минимум 1 букву в верхнем регистре и как минимум 1 цифру!</label>
+
+      <label class="signup-form-checkbox-label">
+        <input formControlName="agree" type="checkbox" class="signup-form-agree">
+        Я принимаю <a href="#">условия пользовательского соглашения</a> и даю <a href="#">согласие на обработку персональных данных.</a>
+      </label>
+      <button class="button" (click)="signup()">Зарегистрироваться</button>
+      <div class="signup-form-link">
+        Уже есть аккаунт? <a routerLink="/login">Войдите</a>
+      </div>
+    </form>
+
+    <img src="../../../../assets/images/pages/signup.png" alt="signup image">
+  </div>
+</section>
