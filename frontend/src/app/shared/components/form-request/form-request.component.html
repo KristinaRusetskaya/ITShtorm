@@ -14,12 +14,12 @@
       <div class="popup-request-form-text-complete" *ngIf="isContent === ContentFormRequestType.completed">
         Мы свяжемся с вами при первой же возможности.
       </div>
-      <form [formGroup]="requestForm" class="popup-request-form-items" *ngIf="isContent === (ContentFormRequestType.abbreviated || ContentFormRequestType.full)">
-        <select formControlName="service" class="input" *ngIf="!(isContent === (ContentFormRequestType.abbreviated || ContentFormRequestType.completed))">
-          <option value="website-creation">Создание сайтов</option>
-          <option value="promotion">Продвижение</option>
-          <option value="advertising">Реклама</option>
-          <option value="copywriting">Копирайтинг</option>
+      <form [formGroup]="requestForm" class="popup-request-form-items" *ngIf="isContent === ContentFormRequestType.abbreviated || isContent === ContentFormRequestType.full">
+        <select class="input" *ngIf="isContent === ContentFormRequestType.full">
+          <option value="website-creation" [selected]="servicePopup === 'website-creation'">Создание сайтов</option>
+          <option value="promotion" [selected]="servicePopup === 'promotion'">Продвижение</option>
+          <option value="advertising" [selected]="servicePopup === 'advertising'">Реклама</option>
+          <option value="copywriting" [selected]="servicePopup === 'copywriting'">Копирайтинг</option>
         </select>
 
         <input formControlName="name" id="name" type="text" class="input" placeholder="Ваше имя"
@@ -36,8 +36,8 @@
 
         <div class="error-response" *ngIf="errorResponseMessage">{{errorResponseMessage}}</div>
 
-        <button class="button" *ngIf="!(isContent === ContentFormRequestType.abbreviated)">Оставить заявку</button>
-        <button class="button" *ngIf="isContent === ContentFormRequestType.abbreviated" (click)="orderConsultation()">Заказать консультацию</button>
+        <button class="button" *ngIf="!(isContent === ContentFormRequestType.abbreviated)" (click)="leaveRequest()">Оставить заявку</button>
+        <button class="button" *ngIf="isContent === ContentFormRequestType.abbreviated" (click)="leaveRequest()">Заказать консультацию</button>
       </form>
       <button class="button button-ok" *ngIf="isContent === ContentFormRequestType.completed" (click)="hidePopup()">Окей</button>
     </div>

@@ -32,7 +32,7 @@ import {CarouselModule} from "ngx-owl-carousel-o";
     MatMenuModule,
     RouterModule,
     CarouselModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}},

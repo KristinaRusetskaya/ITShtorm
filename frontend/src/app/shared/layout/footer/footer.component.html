@@ -8,19 +8,19 @@
       <nav class="footer-navigation-menu">
         <ul>
           <li>
-            <a>Услуги</a>
+            <a routerLink="/" fragment="service">Услуги</a>
           </li>
           <li>
-            <a>Статьи</a>
+            <a routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Статьи</a>
           </li>
           <li>
-            <a>О нас</a>
+            <a routerLink="/" fragment="about">О нас</a>
           </li>
           <li>
-            <a>Отзывы</a>
+            <a routerLink="/" fragment="reviews">Отзывы</a>
           </li>
           <li>
-            <a>Контакты</a>
+            <a routerLink="/" fragment="connection">Контакты</a>
           </li>
         </ul>
       </nav>
@@ -95,6 +95,6 @@
   </div>
 </footer>
 
-<form-request *ngIf="showedPopup"></form-request>
+<form-request *ngIf="showedPopup" [showedPopup]="showedPopup" [isContent]="ContentFormRequestType.abbreviated" (_showedPopup)='hidePopup($event)'></form-request>
 
 <!--[servicePopup]="servicePopup"-->

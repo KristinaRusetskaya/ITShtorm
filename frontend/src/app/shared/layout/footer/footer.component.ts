@@ -7,7 +7,7 @@ import {ContentFormRequestType} from "../../../../types/content-form-request.typ
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit{
+export class FooterComponent {
   public ContentFormRequestType = ContentFormRequestType;
   showedPopup: boolean = false;
 
@@ -15,16 +15,12 @@ export class FooterComponent implements OnInit{
   constructor(private formRequestService: FormRequestService) {
   }
 
-  ngOnInit() {
-    this.formRequestService.showedPopup$.subscribe((showedPopup: boolean) => {
-      this.showedPopup = showedPopup;
-    })
+  hidePopup(_showedPopup: boolean) {
+    this.showedPopup = _showedPopup;
   }
 
   showPopup(): void {
     this.showedPopup = true;
-    this.formRequestService.showedPopup$.next(true);
-    this.formRequestService.isContent$.next(ContentFormRequestType.abbreviated);
   }
 
 }

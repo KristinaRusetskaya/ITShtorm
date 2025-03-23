@@ -3,19 +3,24 @@ import {CommonModule} from '@angular/common';
 import {FormRequestComponent} from './components/form-request/form-request.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { CardItemComponent } from './components/card-item/card-item.component';
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
   declarations: [
-    FormRequestComponent
+    FormRequestComponent,
+    CardItemComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterLink,
+    ],
   exports: [
-    FormRequestComponent
+    FormRequestComponent,
+    CardItemComponent
   ]
 })
 export class SharedModule {

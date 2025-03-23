@@ -1,9 +1,10 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixins";
 
 .main {
   .container {
     .carousel {
-      margin-bottom: 120px;
+      padding-bottom: 120px;
       position: relative;
 
       .carousel-button {
@@ -68,6 +69,234 @@
           font-size: 16px;
           color: #ffffff;
           width: fit-content;
+        }
+      }
+    }
+
+    .services {
+      padding-bottom: 120px;
+
+      .services-title {
+        @include head-lora-38;
+        margin-bottom: 40px;
+      }
+
+      .services-cards {
+        display: flex;
+        justify-content: space-between;
+        gap: 27px;
+      }
+    }
+
+    .about {
+      padding-bottom: 120px;
+      display: flex;
+
+      .about-info {
+        margin-left: 68px;
+
+        .about-info-title {
+          @include head-lora-38;
+          margin-bottom: 20px;
+        }
+
+        .about-info-text {
+          font-size: 14px;
+          line-height: 130%;
+          color: #1E1A2B;
+          margin-bottom: 40px;
+          max-width: 633px;
+
+          span {
+            font-weight: 500;
+          }
+        }
+
+        .about-info-advantages-title {
+          font-family: 'Lora', sans-serif;
+          font-weight: 400;
+          font-size: 26px;
+          color: $light-blue-color;
+          margin-bottom: 20px;
+        }
+
+        .about-info-advantages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 71px;
+
+          .about-info-advantage {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            .about-info-advantage-number {
+              border-radius: 50%;
+              background-color: #B9D5FD;
+              width: 40px;
+              height: 40px;
+              align-items: self-end;
+              display: flex;
+              justify-content: center;
+
+              span {
+                font-family: "Lora", sans-serif;
+                font-weight: 500;
+                font-size: 50px;
+                color: $light-blue-color;
+                position: relative;
+                top: 5px;
+              }
+            }
+
+            .about-info-advantage-text {
+              max-width: 256px;
+              font-size: 14px;
+              line-height: 130%;
+              color: #1E1A2B;
+
+              span {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .articles {
+      padding-bottom: 120px;
+      display: flex;
+      flex-direction: column;
+
+      .articles-title {
+        @include head-lora-38;
+        margin-bottom: 40px;
+      }
+
+      .articles-items {
+        display: grid;
+        gap: 27px;
+        grid-template-columns: (repeat(4, 1fr));
+      }
+
+      .articles-more {
+        display: flex;
+        align-items: center;
+        margin-top: 40px;
+        align-self: end;
+        text-decoration: none;
+
+        span {
+          font-weight: 500;
+          font-size: 20px;
+          color: $light-blue-color;
+          margin-right: 14px;
+        }
+      }
+    }
+
+    .reviews {
+      padding-bottom: 120px;
+
+      .reviews-title {
+        @include head-lora-38;
+        margin-bottom: 20px;
+      }
+
+      .reviews-items {
+        position: relative;
+
+        .reviews-button {
+          position: absolute;
+          border: none;
+          background: transparent;
+          top: calc(50% - 9px);
+          cursor: pointer;
+
+          &.prev {
+            left: -25px;
+          }
+
+          &.next {
+            right: -25px;
+          }
+        }
+
+        .review-item {
+          width: 396px;
+          height: 267px;
+          border-radius: 5px;
+          border: 2px solid $light-blue-color;
+          padding: 30px;
+          box-sizing: border-box;
+
+          .review-item-user {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+
+            img {
+              width: 60px;
+              height: 60px;
+              margin-right: 26px;
+            }
+
+            span {
+              font-weight: 600;
+              font-size: 18px;
+              color: $light-blue-color;
+            }
+          }
+
+          .review-item-text {
+            font-size: 16px;
+            line-height: 140%;
+            color: $blue-text-color;
+
+          }
+        }
+      }
+    }
+
+    .connection {
+      padding-bottom: 120px;
+      display: flex;
+
+      .connection-map iframe {
+        vertical-align: bottom;
+      }
+
+      .connection-contacts {
+        margin-left: 26px;
+
+        .connection-contacts-title {
+          @include head-lora-38;
+          margin-bottom: 20px;
+        }
+
+        .connection-contact {
+          margin-bottom: 20px;
+
+          .connection-contact-title {
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 20px;
+            color: $light-blue-color;
+          }
+
+          .connection-contact-info {
+            font-size: 14px;
+            line-height: 130%;
+            color: $blue-text-color;
+            text-decoration: none;
+          }
+
+          .connection-contact-svg {
+            display: flex;
+            gap: 20px;
+          }
         }
       }
     }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormRequestService} from "../../services/form-request.service";
 import {ContentFormRequestType} from "../../../../types/content-form-request.type";
 import {FormBuilder, Validators} from "@angular/forms";
@@ -10,15 +10,16 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: './form-request.component.html',
   styleUrls: ['./form-request.component.scss']
 })
-export class FormRequestComponent implements OnInit{
+export class FormRequestComponent implements OnInit {
   @Input() servicePopup!: string;
+  @Input() isContent!: ContentFormRequestType;
+  @Input() showedPopup!: boolean;
+  @Output() _showedPopup: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   public ContentFormRequestType = ContentFormRequestType;
-  showedPopup: boolean = true;
-  isContent!: ContentFormRequestType;
   errorResponseMessage: string = '';
 
   requestForm = this.fb.group({
-    service: [this.servicePopup],
     name: ['', Validators.required],
     phone: ['', Validators.required]
   });
@@ -28,20 +29,14 @@ export class FormRequestComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.formRequestService.showedPopup$.subscribe((showedPopup: boolean) => {
-      this.showedPopup = showedPopup;
-    })
-    // this.formRequestService.isContent$.subscribe((isContent: ContentFormRequestType) => {
-    //   this.isContent = isContent;
-    // })
+
   }
 
   hidePopup(): void {
-    this.showedPopup = false;
-    this.formRequestService.showedPopup$.next(false);
+    this._showedPopup.emit(false);
   }
 
-  orderConsultation() {
+  leaveRequest() {
     this.requestForm.markAllAsTouched();
 
     if (this.requestForm.valid && this.requestForm.value.name && this.requestForm.value.phone) {
@@ -51,6 +46,10 @@ export class FormRequestComponent implements OnInit{
         type: DataType.consultation
       }
 
+      if (this.servicePopup) {
+        userData.service = this.servicePopup;
+      }
+      console.log(userData);
       this.formRequestService.requestOrderConsultation(userData)
         .subscribe({
           next: () => {
@@ -63,7 +62,7 @@ export class FormRequestComponent implements OnInit{
               this.errorResponseMessage = 'Произошла ошибка при отправке формы, попробуйте еще раз.';
             }
           }
-          });
+        });
     }
   }
 }

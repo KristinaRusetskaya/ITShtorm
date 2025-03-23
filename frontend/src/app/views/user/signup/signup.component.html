@@ -22,7 +22,7 @@
 
       <label class="signup-form-checkbox-label">
         <input formControlName="agree" type="checkbox" class="signup-form-agree">
-        Я принимаю <a href="#">условия пользовательского соглашения</a> и даю <a href="#">согласие на обработку персональных данных.</a>
+        Я принимаю <a routerLink="/politic" fragment="userAgreement">условия пользовательского соглашения</a> и даю <a routerLink="/politic" fragment="personalData">согласие на обработку персональных данных.</a>
       </label>
       <button class="button" (click)="signup()">Зарегистрироваться</button>
       <div class="signup-form-link">

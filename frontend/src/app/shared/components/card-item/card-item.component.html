@@ -1,0 +1,21 @@
+<div class="card-item" *ngIf="cardServiceData">
+  <div class="card-item-image" style="background-image: url({{cardServiceData.image}})"></div>
+  <h3 class="card-item-title">{{ cardServiceData.title }}</h3>
+  <div class="card-item-description">{{ cardServiceData.description }}</div>
+  <div class="card-item-action">
+    <span class="card-item-action-price">От {{ cardServiceData.price }} ₽</span>
+    <button class="button" (click)="showPopup()">Подробнее</button>
+  </div>
+</div>
+
+<div class="card-item" *ngIf="cardArticleData">
+  <div class="card-item-category">
+    {{cardArticleData.category}}
+  </div>
+  <div class="card-item-content">
+    <div class="card-item-image" style="background-image: url({{imagesStaticPath + cardArticleData.image}})"></div>
+    <h3 class="card-item-title">{{ cardArticleData.title }}</h3>
+    <div class="card-item-description">{{ cardArticleData.description }}</div>
+  </div>
+  <a routerLink="/" class="card-item-more">Читать дальше</a>
+</div>
