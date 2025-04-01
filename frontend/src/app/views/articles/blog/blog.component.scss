@@ -16,6 +16,7 @@
       justify-content: space-between;
       margin-bottom: 40px;
       position: relative;
+      min-height: 39px;
 
       .blog-filters-items {
         margin-right: 20px;
@@ -72,13 +73,17 @@
             padding-bottom: 5px;
             cursor: pointer;
 
-            span {
+            .blog-filter-span {
               font-size: 16px;
               color: #BEBEBE;
+
+              &.active {
+                color: $blue-text-color;
+              }
             }
 
             &.active {
-              span {
+              .blog-filter-span {
                 color: $blue-text-color;
               }
             }
@@ -102,7 +107,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 400;
             font-size: 16px;
           }
 

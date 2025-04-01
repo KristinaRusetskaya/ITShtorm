@@ -4,7 +4,7 @@
 .main {
   .container {
     .carousel {
-      padding-bottom: 120px;
+      padding-bottom: 60px;
       position: relative;
 
       .carousel-button {
@@ -74,7 +74,8 @@
     }
 
     .services {
-      padding-bottom: 120px;
+      padding-top: 60px;
+      padding-bottom: 60px;
 
       .services-title {
         @include head-lora-38;
@@ -89,7 +90,8 @@
     }
 
     .about {
-      padding-bottom: 120px;
+      padding-top: 60px;
+      padding-bottom: 60px;
       display: flex;
 
       .about-info {
@@ -166,7 +168,8 @@
     }
 
     .articles {
-      padding-bottom: 120px;
+      padding-top: 60px;
+      padding-bottom: 60px;
       display: flex;
       flex-direction: column;
 
@@ -198,7 +201,8 @@
     }
 
     .reviews {
-      padding-bottom: 120px;
+      padding-top: 60px;
+      padding-bottom: 60px;
 
       .reviews-title {
         @include head-lora-38;
@@ -261,6 +265,7 @@
     }
 
     .connection {
+      padding-top: 60px;
       padding-bottom: 120px;
       display: flex;
 

@@ -1,0 +1,269 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.article {
+  padding-top: 80px;
+  padding-bottom: 120px;
+
+  .container {
+    .article-breadcrumb {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 60px;
+
+      a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #B9D5FD;
+      }
+
+      .article-breadcrumb-slash {
+        font-size: 14px;
+        color: #B9D5FD;
+        font-family: "SuisseIntl", sans-serif;
+      }
+
+      .article-breadcrumb-active {
+        font-weight: 500;
+        font-size: 16px;
+        color: $light-blue-color;
+      }
+    }
+
+    .article-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 106px;
+      margin-bottom: 60px;
+
+      .article-info-text {
+        color: $light-blue-color;
+        max-width: 607px;
+
+        .article-info-title {
+          font-family: "Lora", sans-serif;
+          font-weight: 400;
+          font-size: 38px;
+          line-height: 130%;
+          margin-bottom: 40px;
+        }
+
+        .article-info-description {
+          font-size: 20px;
+          line-height: 130%;
+        }
+      }
+
+      .article-info-image {
+        width: 527px;
+        height: 320px;
+        border-radius: 5px;
+        background-position: center;
+        background-size: cover;
+      }
+    }
+
+    .article-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 96px;
+
+      .article-content {
+        .article-content-share {
+          font-weight: 500;
+          font-size: 14px;
+          color: $light-blue-color;
+          margin-top: 60px;
+          display: flex;
+          gap: 20px;
+
+          .article-content-share-svg {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            a {
+              text-decoration: none;
+            }
+          }
+        }
+
+        .article-content-comments {
+          margin-top: 60px;
+          max-width: 854px;
+
+          .article-content-comments-title {
+            font-family: "Lora", sans-serif;
+            font-weight: 400;
+            font-size: 38px;
+            color: $light-blue-color;
+          }
+
+          .article-content-comments-auth,
+          .article-content-comments-not {
+            margin-top: 20px;
+            font-size: 14px;
+            color: $blue-text-color;
+
+            a {
+              color: $light-blue-color;
+            }
+          }
+
+          .article-content-comments-textarea {
+            margin-top: 40px;
+
+            textarea {
+              box-sizing: border-box;
+              margin-bottom: 20px;
+              width: 100%;
+              max-width: 818px;
+              height: 248px;
+              padding: 20px;
+              border: 2px solid $light-blue-color;
+              border-radius: 3px;
+              outline: none;
+            }
+
+            button {
+              padding: 15px 90px;
+            }
+          }
+
+          .article-comments {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+
+            .article-comment {
+              .article-comment-info {
+                display: flex;
+                gap: 26px;
+                margin-bottom: 15px;
+
+                .article-comment-user {
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background-color: #B9D5FD;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border: 2px solid $light-blue-color;
+                }
+
+                .article-comment-data {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+
+                  .article-comment-name {
+                    font-weight: 600;
+                    font-size: 18px;
+                    color: $light-blue-color;
+                  }
+
+                  .article-comment-date {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: #BEBEBE;
+                  }
+                }
+              }
+
+              .article-comment-text {
+                font-size: 14px;
+                line-height: 140%;
+                color: $blue-text-color;
+                margin-bottom: 40px;
+              }
+
+              .article-comment-actions {
+                display: flex;
+                gap: 15px;
+
+                .article-comment-like,
+                .article-comment-dislike {
+                  display: flex;
+                  align-items: center;
+                  gap: 2px;
+
+                  span {
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: $blue-text-color;
+                  }
+
+                  svg {
+                    cursor: pointer;
+                    stroke: $blue-text-color;
+                  }
+
+                  &.active {
+                    span, svg {
+                      color: $light-blue-color;
+                      stroke: $light-blue-color;
+                    }
+                  }
+                }
+
+                .article-comment-spam {
+                  display: flex;
+                  cursor: pointer;
+                }
+              }
+            }
+
+            .article-comments-add {
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              gap: 10px;
+
+              span {
+                font-weight: 500;
+                font-size: 20px;
+                color: $light-blue-color;
+              }
+            }
+
+            .article-comments-loader {
+              max-width: 336px;
+              text-align: center;
+
+              svg {
+                animation: infiniteLoader 1s linear infinite;
+              }
+
+              @keyframes infiniteLoader {
+                from {
+                  transform: rotate(360deg);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .article-related {
+        padding-top: 60px;
+
+        .article-related-title {
+          font-family: "Lora", sans-serif;
+          font-weight: 400;
+          font-size: 26px;
+          color: $light-blue-color;
+          margin-bottom: 20px;
+        }
+
+        .articles-related {
+          display: flex;
+          flex-direction: column;
+          gap: 60px;
+        }
+      }
+    }
+  }
+}

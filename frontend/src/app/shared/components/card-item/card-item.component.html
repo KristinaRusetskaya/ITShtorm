@@ -17,5 +17,5 @@
     <h3 class="card-item-title">{{ cardArticleData.title }}</h3>
     <div class="card-item-description">{{ cardArticleData.description }}</div>
   </div>
-  <a routerLink="/" class="card-item-more">Читать дальше</a>
+  <a [routerLink]="'/article/' + cardArticleData.url" class="card-item-more">Читать дальше</a>
 </div>

@@ -49,7 +49,6 @@ export class FormRequestComponent implements OnInit {
       if (this.servicePopup) {
         userData.service = this.servicePopup;
       }
-      console.log(userData);
       this.formRequestService.requestOrderConsultation(userData)
         .subscribe({
           next: () => {
