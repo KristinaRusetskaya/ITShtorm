@@ -79,10 +79,8 @@ export class ArticleComponent implements OnInit {
                     if (comment.id === item.comment) {
                       if (item.action === 'like') {
                         comment.likeActive = true;
-                        console.log(comment.likeActive);
                       } else if (item.action === 'dislike') {
                         comment.dislikeActive = true;
-                        console.log(comment.likeActive);
                       }
                     }
                   })
@@ -204,7 +202,13 @@ export class ArticleComponent implements OnInit {
           },
 
           error: (error: HttpErrorResponse) => {
-            this._snackBar.open('Жалоба уже отправлена!');
+            if (action === 'violate') {
+              this._snackBar.open('Жалоба уже отправлена!');
+            } else {
+              if (error.status === 401 || error.status === 403) {
+                this._snackBar.open('Произошла ошибка, попробуйте ещё раз!');
+              }
+            }
           }
         });
     }
