@@ -9,6 +9,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {CommentService} from "../../../shared/services/comment.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActionType} from "../../../../types/action-type.type";
+import {Action} from "rxjs/internal/scheduler/Action";
 
 @Component({
   selector: 'app-article',
@@ -156,60 +158,58 @@ export class ArticleComponent implements OnInit {
   }
 
   actionsComment(comment: ArticleCommentType, action: string) {
-      this.commentService.applyAction(comment.id, action)
-        .subscribe({
-          next: () => {
-            if (action === 'violate') {
-              this._snackBar.open('Жалоба отправлена!');
-            } else {
-              this.commentService.getActionsForComment(comment.id)
-                .subscribe({
-                  next: data => {
-                    if (data as { comment: string, action: string }[]) {
-                      const actions = (data as { comment: string, action: string }[]);
-                      actions.find(item => item.action === action);
-                      if (actions.length === 0) {
-                        if (action === 'like') {
-                          comment.likesCount -= 1;
-                          comment.likeActive = false;
-                        } else if (action === 'dislike') {
-                          comment.dislikesCount -= 1;
-                          comment.dislikeActive = false;
-                        }
-                      } else {
-                        if (action === 'like') {
-                          comment.likesCount += 1;
-                          comment.likeActive = true;
-                          this._snackBar.open('Ваш голос учтен!');
-                          if (comment.dislikeActive) {
-                            comment.dislikesCount -= 1;
-                            comment.dislikeActive = false;
-                          }
-                        } else if (action === 'dislike') {
-                          comment.dislikesCount += 1;
-                          comment.dislikeActive = true;
-                          this._snackBar.open('Ваш голос учтен!');
-                          if (comment.likeActive) {
-                            comment.likesCount -= 1;
-                            comment.likeActive = false;
-                          }
-                        }
+    this.commentService.applyAction(comment.id, action)
+      .subscribe({
+        next: () => {
+          if (action === ActionType.violate) {
+            this._snackBar.open('Жалоба отправлена!');
+          } else {
+            this.commentService.getActionsForComment(comment.id)
+              .subscribe((data) => {
+                if (data as { comment: string, action: string }[]) {
+                  const actions = (data as { comment: string, action: string }[]);
+                  actions.find(item => item.action === action);
+                  if (actions.length === 0) {
+                    if (action === ActionType.like) {
+                      comment.likesCount -= 1;
+                      comment.likeActive = false;
+                    } else if (action === ActionType.dislike) {
+                      comment.dislikesCount -= 1;
+                      comment.dislikeActive = false;
+                    }
+                  } else {
+                    if (action === ActionType.like) {
+                      comment.likesCount += 1;
+                      comment.likeActive = true;
+                      this._snackBar.open('Ваш голос учтен!');
+                      if (comment.dislikeActive) {
+                        comment.dislikesCount -= 1;
+                        comment.dislikeActive = false;
+                      }
+                    } else if (action === ActionType.dislike) {
+                      comment.dislikesCount += 1;
+                      comment.dislikeActive = true;
+                      this._snackBar.open('Ваш голос учтен!');
+                      if (comment.likeActive) {
+                        comment.likesCount -= 1;
+                        comment.likeActive = false;
                       }
                     }
                   }
-                })
-            }
-          },
+                }
+              })
+          }
+        },
 
-          error: (error: HttpErrorResponse) => {
-            if (action === 'violate') {
-              this._snackBar.open('Жалоба уже отправлена!');
-            } else {
-              if (error.status === 401 || error.status === 403) {
-                this._snackBar.open('Произошла ошибка, попробуйте ещё раз!');
-              }
+        error: (error: HttpErrorResponse) => {
+          if (action === ActionType.violate) {
+            this._snackBar.open('Жалоба уже отправлена!');
+          } else {
+            if (error.status === 401 || error.status === 403) {
+              this._snackBar.open('Произошла ошибка, попробуйте ещё раз!');
             }
           }
-        });
-    }
+        }
+      });
+  }
 }
