@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor{
       return next.handle(authReg)
         .pipe(
           catchError((error) => {
-            if (error.status === 401 && !authReg.url.includes('/login') ||  !authReg.url.includes('/refresh')) {
+            if (error.status === 401 && !authReg.url.includes('/login') && !authReg.url.includes('/refresh')) {
               return this.handle401Error(authReg, next);
             }
             return throwError(() => error);
@@ -58,7 +58,7 @@ export class AuthInterceptor implements HttpInterceptor{
           this.authService.setTokens(refreshResult.accessToken, refreshResult.refreshToken);
 
           const authReg = req.clone({
-            headers: req.headers.set('x-access-token', refreshResult.accessToken)
+            headers: req.headers.set('x-auth', refreshResult.accessToken)
           });
 
           return next.handle(authReg);
